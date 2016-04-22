@@ -99,10 +99,11 @@ APNG.animateImage = function (img) {
             p.removeChild(img);
             anim.addContext(canvas.getContext("2d"));
             anim.play();
-            return anim;
+            return Promise.resolve(anim);
         },
-        function () {
+        function (e) {
             img.setAttribute("data-is-apng", "no");
+            return Promise.reject(e);
         });
 };
 
